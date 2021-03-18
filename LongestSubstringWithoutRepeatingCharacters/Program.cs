@@ -7,7 +7,30 @@ namespace LongestSubstringWithoutRepeatingCharacters
     {
         static void Main(string[] args)
         {
-            string s = "abcabcbb";
+            //Generate Random String
+            #region
+            char start = 'a';
+            char[] table = new char[26];
+            for(int i=0;i<table.Length;i++)
+            {
+                table[i] = start;
+                start++;
+            }
+
+            Console.Write("Random String Length: ");
+            int sLength = Convert.ToInt32(Console.ReadLine());
+
+            Random r1 = new Random();
+            List<Char> Geneated = new List<char>();
+            for(int i=0;i<sLength;i++)
+            {
+                Geneated.Add(table[r1.Next(0, 26)]);
+            }
+            #endregion
+
+            string s =new string(Geneated.ToArray());
+
+            Console.WriteLine($"Generated random string: {s}");
             HashSet<char> proc = new HashSet<char>();
             int n = s.Length;
 
@@ -30,7 +53,7 @@ namespace LongestSubstringWithoutRepeatingCharacters
                     }
                 output = right - i + 1 > output ? right - i + 1 : output;
             }
-                Console.WriteLine(output);
+                Console.WriteLine($"Longest substring without repeating characters: {output}");
         }
     }
 }
